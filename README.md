@@ -40,7 +40,7 @@ In terms of AOP we use method interception for a number of achievements, and in 
 
 This is the obvious part, we use Guice injector in order to set up the DDD stack, for instance : 
 
-<PNG : inject.domain.png >
+![]https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/inject.domain.png
 
 ### Domain REST Exposition DI
 
@@ -50,7 +50,7 @@ This is the basic usage of the Guice/HK2 bridge, all you have to do is declare t
 
 We end up with the following architecture : 
 
-<PNG : inject.domain.exposition.png >
+![]https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/inject.domain.exposition.png
 
 ### Method Interception In Domain
 
@@ -66,7 +66,7 @@ All you have to do is to register a Binder that provides the interception servic
 
 However if you want to re-use the interception implemented with Guice, then you’ll have to @Inject your Guice provided interceptor in the HK2 InterceptionService implementation : 
 
-<PNG : interceptor with Inject >
+![]https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/aop.domain.png
 
 In order to put it all together you’ll need to :
 
@@ -77,7 +77,7 @@ In order to put it all together you’ll need to :
 
 And you end with the following architecture : 
 
-<PNG : aop.rest.png>
+![]https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/aop.rest.png
 
 ## About the Implementation 
 
