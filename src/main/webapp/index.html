@@ -1,0 +1,132 @@
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	
+	
+ <style>
+	body { font-size: 62.5%; }
+	label, input { display:block; }
+	input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	fieldset { padding:0; border:0; margin-top:25px; }
+	h1 { font-size: 1.2em; margin: .6em 0; }
+	div#players-contain { width: 400px; margin: 20px 0; }
+	div#players-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+	div#players-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+	.ui-dialog .ui-state-error { padding: .3em; }
+	.validateTips { border: 1px solid transparent; padding: 0.3em; }
+	select {
+	    padding:3px;
+	    margin: 0;
+	    -webkit-border-radius:4px;
+	    -moz-border-radius:4px;
+	    border-radius:4px;
+	    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+	    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+	    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+	    background: #f8f8f8;
+	    color:#888;
+	    border:none;
+	    outline:none;
+	    display: inline-block;
+	    -webkit-appearance:none;
+	    -moz-appearance:none;
+	    appearance:none;
+	    cursor:pointer;
+	}
+	h1 {
+	    padding:3px;
+	    margin: 0;
+	    display: inline-block;
+	    appearance:none;
+	    cursor:pointer;
+	}
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    select {padding-right:18px}
+	}
+
+</style>	
+	
+	<script class="javascript">
+		// set up the selector via ajax call
+		function setUpSelector()
+		{
+			$.ajax(
+				{
+					 type: "GET",
+			         url: "./api/v1/meta/categories/",
+			         contentType: "application/json",              
+			         dataType: "json",
+				 }
+			).done(function (arten)
+			 {
+				$('#instrumentCateg').empty();
+				$.each(arten, function () {
+					$('#instrumentCateg').append('<option>' + this['value'] + '</option>');
+				});
+				$('#instrumentCateg').append('<option>Any Instrument</option>');
+				onSelectorChange();
+			 }
+			)			
+		}
+		
+		// selector update behavior
+		function onSelectorChange()
+		{
+			updateTable();
+		}
+		
+		function updateTable()
+		{
+			// determine the filter
+			var selcateg = $( "#instrumentCateg" ).val();
+			var filtering = (selcateg.localeCompare("Any Instrument")==0)?"":""+selcateg+"/"; 
+			// get the filered results		 
+			$.ajax(
+				{
+					 type: "GET",
+			         url: "./api/v1/players/"+filtering,
+			         contentType: "application/json",              
+			         dataType: "json",
+				 }
+			).done(function (arten)
+			 {
+				$("#playersTable tbody").empty();
+				$.each(arten, function () {
+					$("#playersTable tbody").append('<tr> <td>' + this['name'] + '</td> <td>'+ this['email'] +'</td> <td>'+ this['instruments'] +'</td> </tr>');
+				});
+			 }
+			)			
+		}
+ 
+	
+	 $( document ).ready(function() {
+			setUpSelector();
+	  });
+	
+	</script>
+</head>
+
+<body>
+<div id="selectorPane" class="ui-widget">
+   <h1>For your next gig you need someone playing</h1>
+	<select id="instrumentCateg" onChange="onSelectorChange()"></select>
+</div>
+<div id="players-contain" class="ui-widget">
+	<table id="playersTable" class="ui-widget ui-widget-content">
+		<thead>
+			<tr class="ui-widget-header ">
+				<td>Name</td>
+				<td>eMail</td>
+				<td>Played Instruments</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>tralali</td>
+				<td>tralala</td>
+				<td>a,b,c,d</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>

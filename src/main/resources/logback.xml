@@ -1,0 +1,25 @@
+<configuration debug="true" >
+  
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+    <encoder>
+      <pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+    </encoder>
+  </appender>
+  
+  <appender class="ch.qos.logback.core.FileAppender" name="PERF_LOGGER_FILE">
+  	<file>${java.io.tmpdir}/perf.log</file>
+  	<append>true</append>
+    <encoder>
+      <pattern>%msg %n</pattern>
+    </encoder>
+  </appender>
+  
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+  
+  <logger name="PERF_LOGGER">
+  	<appender-ref ref="PERF_LOGGER_FILE"/>
+  </logger>
+  
+</configuration>
