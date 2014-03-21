@@ -71,9 +71,7 @@ In order to put it all together you’ll need to :
 * bind the implementation of the InterceptionService using HK2 Binder
 * use bi-directional Guice/HK2 Bride in order to put it all together
 
-And you end with the following architecture : 
-
-![rest aop](https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/aop.rest.png)
+And you end with the following ![rest aop](stack(https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/aop.rest.png)
 
 ## About the Implementation 
 
