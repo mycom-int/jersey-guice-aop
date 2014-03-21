@@ -1,4 +1,3 @@
-
 # Working with Jersey and Guice
 ( DI and AOP using Guice, HK2 and HK2/Guice Bridge )
 
@@ -60,8 +59,9 @@ If you want to intercept methods on the REST level you’ll have to use HK2 AOP 
 
 All you have to do is to register a Binder that provides the interception service implementation.
 
-However if you want to re-use the interception implemented with Guice, then you’ll have to @Inject your Guice provided interceptor in the ![HK2 InterceptionService implementation](./src/doc/png/HK2.Interceptor.Service.png)
+However if you want to re-use the interception implemented with Guice, then you’ll have to @Inject your Guice provided interceptor in the HK2 InterceptionService implementation
 
+![HK2 InterceptionService implementation](./src/doc/png/HK2.Interceptor.Service.png)
 
 In order to put it all together you’ll need to :
 
