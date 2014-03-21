@@ -1,6 +1,5 @@
-Working with Jersey and Guice
-#############################
 
+# Working with Jersey and Guice
 ( DI and AOP using Guice, HK2 and HK2/Guice Bridge )
 
 ## Motivation 
