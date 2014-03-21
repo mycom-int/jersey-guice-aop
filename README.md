@@ -38,7 +38,7 @@ In terms of AOP we use method interception for a number of achievements, and in 
 
 ### Domain DI
 
-This is the obvious part, we use Guice injector in order to set up the ![DDD stack](https://github.com/mycom-int/jersey-guice-aop/blob/master/src/doc/png/inject.domain.png)
+This is the obvious part, we use Guice injector in order to set up the ![DDD stack](./src/doc/png/inject.domain.png)
 
 ### Domain REST Exposition DI
 
