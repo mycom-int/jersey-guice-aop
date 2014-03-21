@@ -36,7 +36,9 @@ In terms of AOP we use method interception for a number of achievements, and in 
 
 ### Domain DI
 
-This is the obvious part, we use Guice injector in order to set up the ![DDD stack](./src/doc/png/inject.domain.png)
+This is the obvious part, we use Guice injector in order to set up the DDD Stack 
+
+![DDD stack](./src/doc/png/inject.domain.png)
 
 ### Domain REST Exposition DI
 
@@ -44,13 +46,17 @@ In order to expose our Domain in the REST resources we need to @Inject our Appli
 
 This is the basic usage of the Guice/HK2 bridge, all you have to do is declare the bridge (unidirectional is fair enough) by following the documentation at https://hk2.java.net/guice-bridge/ 
 
-We end up with the ![following domain exposition](./src/doc/png/inject.domain.exposition.png)
+We end up with the following architecture 
+
+![ domain exposition](./src/doc/png/inject.domain.exposition.png)
 
 ### Method Interception In Domain
 
 Interceptiong method with Guice AOP is really easy , all you have to do is follow the exemple in the doc available at http://code.google.com/p/google-guice/wiki/AOP 
 
-We end up with an architecture that ![looks like this](./src/doc/png/aop.domain.png)
+We end up with an architecture that looks like this 
+
+![aop in domain](./src/doc/png/aop.domain.png)
 
 
 ### Method Interception in the REST layer
@@ -61,7 +67,7 @@ All you have to do is to register a Binder that provides the interception servic
 
 However if you want to re-use the interception implemented with Guice, then you’ll have to @Inject your Guice provided interceptor in the HK2 InterceptionService implementation
 
-![HK2 InterceptionService implementation](./src/doc/png/HK2.Interceptor.Service.png)
+![HK2 interception](./src/doc/png/HK2.Interceptor.Service.png)
 
 In order to put it all together you’ll need to :
 
@@ -70,7 +76,9 @@ In order to put it all together you’ll need to :
 * bind the implementation of the InterceptionService using HK2 Binder
 * use bi-directional Guice/HK2 Bride in order to put it all together
 
-And you end with the following ![rest aop](stack(./src/doc/png/aop.rest.png)
+And you end with the following rest aop architecture
+
+![rest aop](stack(./src/doc/png/aop.rest.png)
 
 ## About the Implementation 
 
