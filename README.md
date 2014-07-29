@@ -8,7 +8,7 @@ Our REST exposition really likes Jersey, and we also feel really comfortable wit
 
 We naturally wanted to expose our Domain code via Jersey REST resources. 
 
-The main point is that Jersey comes with it’s own injection framework called HK2, and our need was to re-use DI and AOP features we already implemented with Guice.
+The main point is that Jersey uses Glassfish's injection framework called HK2, and our need was to re-use DI and AOP features we already implemented with Guice.
 
 Now one of the really really cool features of HK2 is to propose injector bridges ! So there is one for Spring and another for Guice, allowing to mix the frameworks and annotations in order to achieve a smooth integration.
 
@@ -27,9 +27,9 @@ The sample show how to deal with basic Injection and Interception on both Domain
 
 The Domain is pretty trivial and basically provides a basic lookup service in a (jazz) musician database. The UI part is even simplier as it is a plain HTML document instrumented with some jQuery in order to fetch the data from the server.
 
-In terms of DI  we simply want to use the interface injection in order to access our the Application layer of or DDD stack in the REST resources. This  pretty similar to what we all do our domain code anyway.
+In terms of DI  we simply want to use the interface injection in order to access our the Application layer of or DDD stack in the REST resources. This is pretty similar to what we all do in our domain code anyway.
 
-In terms of AOP we use method interception for a number of achievements, and in this example we’ll show how to use a method level annotation ( @LogPerformances ) in order to track the time spent in the execution. 
+In terms of AOP we use method interception for a number of achievements, and in this example we’ll show how to use a method level annotation ( @LogPerformances ) in order to track the time spent in the method execution. 
 
 
 ## Architecture 
@@ -52,7 +52,7 @@ We end up with the following architecture
 
 ### Method Interception In Domain
 
-Interceptiong method with Guice AOP is really easy , all you have to do is follow the exemple in the doc available at http://code.google.com/p/google-guice/wiki/AOP 
+Intercepting method with Guice AOP is really easy , all you have to do is follow the exemple in the doc available at http://code.google.com/p/google-guice/wiki/AOP 
 
 We end up with an architecture that looks like this 
 
@@ -78,15 +78,15 @@ In order to put it all together you’ll need to :
 
 And you end with the following rest aop architecture
 
-![rest aop](stack(./src/doc/png/aop.rest.png)
+![rest aop](./src/doc/png/aop.rest.png)
 
 ## About the Implementation 
 
 The most interesting part is located under the com.mycom.samples.aop.inject package which contains three sub-packages : 
 
-guice   : all the Guice Modules providing annotation handling and domain level injection
-hk2      : the HK2 service implementation and binder
-servlet : the Guice and Jersey servlet container configuration. We bridge both worlds in the Jersey resource configuration.
+* guice   : all the Guice Modules providing annotation handling and domain level injection
+* hk2      : the HK2 service implementation and binder
+* servlet : the Guice and Jersey servlet container configuration. We bridge both worlds in the Jersey resource configuration.
 
 ## Try it out
 
