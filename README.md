@@ -25,7 +25,7 @@ HK2/Jersey AOP support is quite “fresh”. In order to use it, you’ll need a
 
 The sample show how to deal with basic Injection and Interception on both Domain and REST layers.
 
-The Domain is pretty trivial and basically provides a basic lookup service in a (jazz) musician database. The UI part is even simplier as it is a plain HTML document instrumented with some jQuery in order to fetch the data from the server.
+The Domain is pretty trivial and basically provides a basic lookup service in a (jazz) musician database. The UI part is even simplier as it is a plain HTML document instrumented with some Angular.js in order to fetch the data from the server.
 
 In terms of DI  we simply want to use the interface injection in order to access our the Application layer of or DDD stack in the REST resources. This is pretty similar to what we all do in our domain code anyway.
 
